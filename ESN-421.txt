@@ -1,0 +1,6 @@
+1. git clone
+2. git init
+3. git pull
+4. git push (before the stage comit)
+5. git commit
+6. git checkout
