@@ -1,0 +1,55 @@
+close all
+clear all
+
+x = [1 2 3 4 5 6 7 8];
+y = [1 5 3 7 8 11 10 110];
+
+plot(x,y,'o','Markersize',10,'Markerfacecolor','r');
+
+
+xvec = 1:0.01:8;
+
+finM = 0;
+finC = 0;
+
+finM2 = 0;
+finC2 = 0;
+
+minSumSquaredDiff = 10000000;
+minSumSquaredDiff2 = 10000000;
+
+for m = -10:0.01:10
+    for c = -10:0.01:10
+        yvec = m * x + c;
+        yvec2 = m * x + c;
+
+        
+        sumSquaredDiff = sum((y - yvec).^2);
+
+        sumSquaredDiff2 = sum(abs(y - yvec2));
+
+        if sumSquaredDiff < minSumSquaredDiff
+            finM= m;
+            finC= c;
+            minSumSquaredDiff = sumSquaredDiff;
+        end
+
+
+        if sumSquaredDiff2 < minSumSquaredDiff2
+            finM2= m;
+            finC2= c;
+            minSumSquaredDiff2 = sumSquaredDiff2;
+        end
+
+    end
+end
+
+
+
+finYvec = finM * xvec + finC;
+hold on
+plot(xvec, finYvec, 'b', 'LineWidth', 2);
+
+hold on;
+finYvec2 = finM2 * xvec + finC2;
+plot(xvec, finYvec2, 'k', 'LineWidth', 2,'LineStyle','--');
